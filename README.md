@@ -2,6 +2,8 @@
 
 Node.js library to copy assets located on the `node_modules` directory to the destination defined in the `index.html`.
 
+[![copia on Travis](https://api.travis-ci.org/fedelopez/copia.svg)](https://travis-ci.org/fedelopez/copia)
+
 ## Quick Start
 
 Download the latest version
