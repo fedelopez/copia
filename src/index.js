@@ -7,9 +7,8 @@ var walk = require('fs-walk');
 
 var Copia = function (config) {
 
-    var assetNamesMap = function (html) {
+    var assetsMap = function (html, regex) {
         var assets = [];
-        var regex = /<script src="(.*?)"><\/script>/g;
         var keepGoing = true;
         while (keepGoing) {
             var asset = regex.exec(html);
@@ -27,16 +26,16 @@ var Copia = function (config) {
 
     var contents = fs.readFileSync(indexHtml);
     var indexHtmlBasedir = path.dirname(indexHtml);
-    var assetsMap = assetNamesMap(contents);
+    var map = assetsMap(contents, /<script src="(.*?)"><\/script>/g).concat(assetsMap(contents, /<link rel="stylesheet" href="(.*?)">/g));
 
     walk.walkSync(nodeModulesDir, function (basedir, filename) {
-        var asset = assetsMap.find(function (asset) {
+        var asset = map.find(function (asset) {
             return asset.filename === filename;
         });
         if (asset) {
-            var src = path.join(process.cwd(), basedir, filename);
-            var dst = path.join(process.cwd(), indexHtmlBasedir, asset.basedir, asset.filename);
-            console.log("Copia src:<" + src + "> to dst:<" + dst + ">");
+            var src = path.resolve(path.join(basedir, filename));
+            var dst = path.resolve(path.join(indexHtmlBasedir, asset.basedir, asset.filename));
+            console.log("Copying <" + src + "> to <" + dst + ">");
             fse.copySync(src, dst);
         }
     });

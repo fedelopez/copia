@@ -1,7 +1,7 @@
 {
   "name": "copia",
   "version": "0.0.1",
-  "description": "Copy assets located on node_modules folder to the destination defined in the main html file.",
+  "description": "Copy assets located on the node_modules folder to the destination defined in the html file provided.",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha ./src/test/index.test.js"
