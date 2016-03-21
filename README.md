@@ -7,49 +7,46 @@ Node.js library to copy assets located on the `node_modules` directory to the de
 ## Quick Start
 
 Download the latest version
-    
-    npm install --save-dev copia
+```shell    
+npm install --save-dev copia
+```
 
 Require `copia`:
+```javascript
+var cp = require('copia');
+``` 
 
-    var cp = require('copia');
-    
 Define the location of your `node_modules` folder and the `index.html` file: 
+```javascript
+var config = {"index-html": "./src/index.html", "node-modules": "./node_modules"};
+```
 
-    var config = {"index-html": "./src/index.html", "node-modules": "./node_modules"};
-    
 Invoke `copia` with the `config` object defined above:
-    
-    cp.copia(config);
-    
+```javascript    
+cp.copia(config);
+```
+
 Copia will walk the `node_modules` directory structure and automatically copy all the assets (css and js) defined in your `index.html`:
 
-    <html>
-    <head>
-        <link rel="stylesheet" href="public/css/codemirror.css"> 
-        <link rel="stylesheet" href="public/css/dracula.css">
-        <meta charset="utf-8">
-        <title>My HTML</title>
-    </head>
-    <body>
-    <div>
-        <h1>Test page</h1>
-    </div>
-    <script src="public/js/codemirror.js"></script>
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/app.js"></script>
-    </body>
-    </html>
-
-Now your assets folder will be automatically populated each time `copia` is invoked:
+The following reference on `index.html`...
+```html
+<link rel="stylesheet" href="public/css/codemirror.css">
+```
+... will be copied from `node_modules` to the actual location referenced above:
 
     public
         css
             codemirror.css 
-            dracula.css
+
+Same for any script file:
+
+```html
+<script src="public/js/codemirror.js"></script>
+```
+
+    public
         js
             codemirror.js
-            jquery.min.js
 
 ## Todo
 
