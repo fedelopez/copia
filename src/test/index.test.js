@@ -6,7 +6,7 @@ var fs = require("fs");
 var fse = require("fs-extra");
 var path = require("path");
 
-describe("copia", function () {
+describe("copia specs", function () {
 
     beforeEach(function () {
         fse.removeSync("./src/test/public");
