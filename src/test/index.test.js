@@ -38,4 +38,10 @@ describe("copia", function () {
         expect(fs.readFileSync("./src/test/public/css/dracula.css", "utf8")).to.equal("/*Duis maximus viverra consectetur. Suspendisse.*/");
     });
 
+    it("should copy js assets when type attribute is specified on script tag", function () {
+        var config = {"index-html": "./src/test/index-type-attribute.html", "node-modules": "./src/test/node_modules"};
+        copia.copia(config);
+        expect(fs.readFileSync("./src/test/public/js/codemirror.js", "utf8")).to.equal("//Lorem ipsum dolor sit amet.");
+    });
+
 });

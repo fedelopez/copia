@@ -26,7 +26,7 @@ var Copia = function (config) {
 
     var contents = fs.readFileSync(indexHtml);
     var indexHtmlBasedir = path.dirname(indexHtml);
-    var map = assetsMap(contents, /<script src="(.*?)"><\/script>/g).concat(assetsMap(contents, /<link rel="stylesheet" href="(.*?)">/g));
+    var map = assetsMap(contents, /<script\s*(?:type="text\/javascript")?\s*src="(.*?)"><\/script>/g).concat(assetsMap(contents, /<link rel="stylesheet" href="(.*?)">/g));
 
     walk.walkSync(nodeModulesDir, function (basedir, filename) {
         var asset = map.find(function (asset) {

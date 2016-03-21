@@ -1,6 +1,6 @@
 {
   "name": "copia",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Copy assets located on the node_modules folder to the destination defined in the html file provided.",
   "keywords": [
     "copy",
